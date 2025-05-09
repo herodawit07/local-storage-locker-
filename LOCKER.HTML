@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Store Name and Age</title>
+</head>
+<body style="font-family: Arial; padding: 20px;">
+
+  <h2>LocalStorage Locker</h2>
+
+  <label for="name">Name:</label><br>
+  <input type="text" id="name"><br><br>
+
+  <label for="age">Age:</label><br>
+  <input type="number" id="age"><br><br>
+
+  <button onclick="saveInfo()">🔒 Save to Locker</button>
+  <button onclick="clearInfo()">🗑️ Clear Locker</button>
+
+  <h3>📦 What's in the Locker?</h3>
+  <div id="lockerOutput">Nothing saved yet.</div>
+
+  <script>
+    function saveInfo() {
+      var name = document.getElementById("name").value;
+      var age = document.getElementById("age").value;
+
+      
+      localStorage.setItem("lockerName", name);
+      localStorage.setItem("lockerAge", age);
+
+      showInfo();
+    }
+
+    function showInfo() {
+      var name = localStorage.getItem("lockerName");
+      var age = localStorage.getItem("lockerAge");
+
+      if (name && age) {
+        document.getElementById("lockerOutput").innerHTML = 
+          "🔐 Name: " + name + "<br>" +
+          "🔐 Age: " + age;
+      } else {
+        document.getElementById("lockerOutput").innerHTML = "Nothing saved yet.";
+      }
+    }
+
+    function clearInfo() {
+      localStorage.removeItem("lockerName");
+      localStorage.removeItem("lockerAge");
+      showInfo();
+    }
+
+    
+    showInfo();
+  </script>
+
+</body>
+</html>
